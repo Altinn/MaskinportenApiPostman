@@ -1394,6 +1394,17 @@
 					"body": ""
 				}
 			]
+		},
+		{
+			"name": "authtest1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
@@ -1413,18 +1424,21 @@
 				"id": "2a79582c-1a4a-4585-96a7-d9710a82d01c",
 				"type": "text/javascript",
 				"exec": [
-					"var accessToken = pm.globals.get(\"accessToken\");",
-					"var accesTokenExpires = pm.globals.get(\"accesTokenExpires\");",
-					"var accesTokenExpires = pm.globals.get(\"accesTokenExpires\");",
+					"var accessToken = pm.environment.get(\"accessToken\");",
+					"var accesTokenExpires = pm.environment.get(\"accesTokenExpires\");",
+					"var accesTokenExpires = pm.environment.get(\"accesTokenExpires\");",
+					"var alwaysRefresh = pm.variables.get('alwaysRefreshToken') === 'true';",
 					"",
-					"if (!accessToken || !accesTokenExpires || new Date() > new Date(accesTokenExpires)) {",
+					"if (alwaysRefresh || !accessToken || !accesTokenExpires || new Date() > new Date(accesTokenExpires)) {",
 					"    console.log(\"Access token not set or expired\");",
 					"    pm.sendRequest(\"http://devenv.altinn.no:17823/\", function (err, response) {",
 					"        var json = response.json();",
 					"        if (typeof json.access_token !== \"undefined\") {",
-					"            pm.globals.set(\"accessToken\", json.access_token);",
-					"            pm.globals.set(\"accesTokenExpires\", new Date((new Date()).getTime() + parseInt(json.expires_in + \"000\")).toUTCString());",
-					"            console.log(\"New access token received, expires \" +  pm.globals.get(\"accesTokenExpires\"));",
+					"            pm.environment.set(\"accessToken\", json.access_token);",
+					"            pm.environment.set(\"scopes\", json.scope);",
+					"            pm.environment.set(\"accesTokenExpires\", new Date((new Date()).getTime() + parseInt(json.expires_in + \"000\")).toUTCString());",
+					"            console.log(\"New access token received, expires \" +  pm.environment.get(\"accesTokenExpires\"));",
+					"            console.log(\"Scopes: \" + json.scope);",
 					"        }",
 					"        else {",
 					"            console.error(\"Failed getting token\", json);",
@@ -1451,40 +1465,34 @@
 	],
 	"variable": [
 		{
-			"id": "a98de629-42a7-4470-bb10-783199d65233",
+			"id": "fc3f6d5e-4420-4ac8-85be-822bbd036690",
 			"key": "baseUrl",
 			"value": "http://devenv.altinn.no:89/maskinporten-api",
 			"type": "string"
 		},
 		{
-			"id": "f1a13b6c-8d8f-4e9c-bf5a-666a36f0865e",
+			"id": "175d79bf-4055-4697-8b1c-f15e59a1e610",
+			"key": "alwaysRefreshToken",
+			"value": "false",
+			"type": "string"
+		},
+		{
+			"id": "fac7a1fa-5700-44b6-9367-2cbd69d38dff",
 			"key": "DefaultScope",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "d85ef4a2-402f-4156-a9d3-322807a87d9e",
+			"id": "ae7d9a6a-f69c-411d-a4ce-af94886b573c",
 			"key": "DefaultConsumerOrg",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "03cbde51-a693-42db-8998-2d86031710d2",
+			"id": "08096c3d-9e27-4499-aad4-027d75a1fa2f",
 			"key": "DefaultSupplierOrg",
 			"value": "",
 			"type": "string"
-		},
-		{
-			"id": "cda74797-1178-4dd1-a6ab-abec5a1c1e90",
-			"key": "accessToken",
-			"value": null,
-			"type": "any"
-		},
-		{
-			"id": "a5df9088-d241-4ae0-9242-f0be0458823e",
-			"key": "accesTokenExpires",
-			"value": null,
-			"type": "any"
 		}
 	],
 	"protocolProfileBehavior": {}
