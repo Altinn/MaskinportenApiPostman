@@ -1289,7 +1289,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "2166884a-7138-439b-8732-5882e22f95ff",
+						"id": "9f69e201-2e83-4a6d-a936-00d4ac3d91c1",
 						"exec": [
 							""
 						],
@@ -1401,7 +1401,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "{{baseUrl}}/authtest1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"authtest1"
+					]
 				}
 			},
 			"response": []
@@ -1465,31 +1471,31 @@
 	],
 	"variable": [
 		{
-			"id": "fc3f6d5e-4420-4ac8-85be-822bbd036690",
+			"id": "9589aaf7-bf8d-434e-926a-1f555260e76f",
 			"key": "baseUrl",
 			"value": "http://devenv.altinn.no:89/maskinporten-api",
 			"type": "string"
 		},
 		{
-			"id": "175d79bf-4055-4697-8b1c-f15e59a1e610",
+			"id": "0ad31319-f7cb-4611-ae4d-d5edae790a57",
 			"key": "alwaysRefreshToken",
 			"value": "false",
 			"type": "string"
 		},
 		{
-			"id": "fac7a1fa-5700-44b6-9367-2cbd69d38dff",
+			"id": "bb944de0-986a-4105-a9ee-7721c26ce389",
 			"key": "DefaultScope",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "ae7d9a6a-f69c-411d-a4ce-af94886b573c",
+			"id": "dd31a49c-384d-4f2a-9d11-041c9798e6f1",
 			"key": "DefaultConsumerOrg",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "08096c3d-9e27-4499-aad4-027d75a1fa2f",
+			"id": "6c0fcb52-d772-48de-90e1-3b5fcc6325a8",
 			"key": "DefaultSupplierOrg",
 			"value": "",
 			"type": "string"
