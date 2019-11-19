@@ -44,7 +44,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"owner_org\": \"974760673\",\n    \"scopes\": [\n        \"altinn:serviceowner/authorization\",\n        \"altinn:serviceowner/organizations\",\n        \"altinn:serviceowner/events\"\n    ],\n    \"default_language\": \"nb_NO\",\n    \"title\": [\n        {\n            \"code\": \"nb_NO\",\n            \"value\": \"Altinn REST-API for tjenesteeiere\"\n        },\n        {\n            \"code\": \"nn_NO\",\n            \"value\": \"Altinn REST-API for tenesteeigarar\"\n        },\n        {\n            \"code\": \"en\",\n            \"value\": \"Altinn REST-API for serviceowners\"\n        }\n    ],\n    \"description\": [\n        {\n            \"code\": \"nb_NO\",\n            \"value\": \"Gir tilgang til alle deler av Altinn REST API for tjenesteeiere\"\n        },\n        {\n            \"code\": \"nn_NO\",\n            \"value\": \"Gir tilgang til alle delar av Altinn REST API for tenesteeigarar\"\n        },\n        {\n            \"code\": \"en\",\n            \"value\": \"Grants access to all parts of Altinn REST-API for serviceowners\"\n        }\n    ]\n}"
+									"raw": "{\r\n    \"owner_org\": \"974760673\",\r\n    \"scopes\": [\r\n        \"altinn:bjorn/theworld.read\",\r\n        \"altinn:bjorn/theworld.write\"\r\n    ],\r\n    \"title\": [\r\n        {\r\n            \"code\": \"nb_NO\",\r\n            \"value\": \"Bjørn 1\"\r\n        }\r\n    ],\r\n    \"description\": [\r\n        {\r\n            \"code\": \"nb_NO\",\r\n            \"value\": \"Bla bla bla bla bla\"\r\n        }\r\n    ],\r\n    \"default_language\": \"nb_NO\"\r\n}\r\n"
 								},
 								"url": {
 									"raw": "{{baseUrl}}/delegationSchemes",
@@ -1475,7 +1475,111 @@
 			"name": "Delegations",
 			"item": [
 				{
-					"name": "Liste over alle delegeringer som er gjort på et scope",
+					"name": "Liste over delegeringer som er gjort på et scope",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2166884a-7138-439b-8732-5882e22f95ff",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/delegations?scope={{DefaultScope}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"delegations"
+							],
+							"query": [
+								{
+									"key": "scope",
+									"value": "{{DefaultScope}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Liste over alle delegeringer som er gjort på dette scopet.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/delegations?scope={\"value\":\"reference #/components/schemas/Scope not found in the api spec\"}&consumer_org=<string>&supplier_org=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"delegations"
+									],
+									"query": [
+										{
+											"key": "scope",
+											"value": "{\"value\":\"reference "
+										}
+									],
+									"hash": "/components/schemas/Scope not found in the api spec\"}&consumer_org=<string>&supplier_org=<string>"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"consumer_org\": \"<string>\",\n  \"supplier_org\": \"<string>\",\n  \"delegation_scheme_id\": \"<uuid>\",\n  \"created\": \"<dateTime>\",\n  \"scopes\": [\n   \"<string>\",\n   \"<string>\"\n  ]\n },\n {\n  \"consumer_org\": \"<string>\",\n  \"supplier_org\": \"<string>\",\n  \"delegation_scheme_id\": \"<uuid>\",\n  \"created\": \"<dateTime>\",\n  \"scopes\": [\n   \"<string>\",\n   \"<string>\"\n  ]\n }\n]"
+						},
+						{
+							"name": "Ikke tilgang til å hente ut delegeringer",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/delegations?scope={\"value\":\"reference #/components/schemas/Scope not found in the api spec\"}&consumer_org=<string>&supplier_org=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"delegations"
+									],
+									"query": [
+										{
+											"key": "scope",
+											"value": "{\"value\":\"reference "
+										}
+									],
+									"hash": "/components/schemas/Scope not found in the api spec\"}&consumer_org=<string>&supplier_org=<string>"
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Liste over delegeringer som er gjort på et scope mellom to parter",
 					"event": [
 						{
 							"listen": "prerequest",
