@@ -44,7 +44,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"owner_org\": \"974760673\",\r\n    \"scopes\": [\r\n        \"altinn:bjorn/theworld.read\",\r\n        \"altinn:bjorn/theworld.write\"\r\n    ],\r\n    \"title\": [\r\n        {\r\n            \"code\": \"nb_NO\",\r\n            \"value\": \"Bjørn 1\"\r\n        }\r\n    ],\r\n    \"description\": [\r\n        {\r\n            \"code\": \"nb_NO\",\r\n            \"value\": \"Bla bla bla bla bla\"\r\n        }\r\n    ],\r\n    \"default_language\": \"nb_NO\"\r\n}\r\n"
+									"raw": "{\r\n    \"owner_org\": \"974760673\",\r\n    \"scopes\": [        \r\n        \"altinn:ettellerannetscope.read\",\r\n        \"altinn:ettellerannetscope.write\"\r\n    ],\r\n    \"title\": [\r\n        {\r\n            \"code\": \"nb_NO\",\r\n            \"value\": \"Test-API for demo\"\r\n        },\r\n        {\r\n            \"code\": \"nn_NO\",\r\n            \"value\": \"Test-API for ein demo\"\r\n        },\r\n        {\r\n            \"code\": \"en\",\r\n            \"value\": \"Test-API for a demo\"\r\n        }\r\n    ],\r\n    \"description\": [\r\n        {\r\n            \"code\": \"nb_NO\",\r\n            \"value\": \"Denne tjenesten gir full tilgang til et test-API\"\r\n        },\r\n        {\r\n            \"code\": \"nn_NO\",\r\n            \"value\": \"Denne tenesta gir full tilgang til eit test-API\"\r\n        },\r\n        {\r\n            \"code\": \"en\",\r\n            \"value\": \"This service grants full access to a test API\"\r\n        }        \r\n    ],\r\n    \"default_language\": \"nb_NO\"\r\n}"
 								},
 								"url": {
 									"raw": "{{baseUrl}}/delegationSchemes",
@@ -56,6 +56,169 @@
 									]
 								},
 								"description": "Lager et nytt delegeringsoppsett."
+							},
+							"response": [
+								{
+									"name": "Ugyldig delegeringsoppsett. Se respons for nærmere forklaring.",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"owner_org\": \"991825827\",\n    \"scopes\": [\n        \"difi:user/kontaktinfo.read\",\n        \"difi:user/varsling.read\"\n    ],\n    \"default_language\": \"nb_NO\",\n    \"title\": [\n        {\n            \"code\": \"nb_NO\",\n            \"value\": \"Full tilgang til Kontakt- og Reservasjonsregisteret\"\n        },\n        {\n            \"code\": \"nn_NO\",\n            \"value\": \"Full tilgang til Kontakt- og Reservasjonsregisteret\"\n        },\n        {\n            \"code\": \"en_GB\",\n            \"value\": \"Full access to the Contact and Reservation Register\"\n        }\n    ],\n    \"description\": [\n        {\n            \"code\": \"nb_NO\",\n            \"value\": \"Gir anledning til å lese og endre data i KRR\"\n        },\n        {\n            \"code\": \"nn_NO\",\n            \"value\": \"Gjer høve til å lesa og endra data i KRR\"\n        },\n        {\n            \"code\": \"en_GB\",\n            \"value\": \"Allows you to read and change data in the Contact and Reservation Register\"\n        }\n    ],\n    \"delegation_source\": \"altinn\",\n    \"delegation_source_config\": [\n        {\n            \"key\": \"RequiresRoles\",\n            \"value\": \"DAGL,LEDE\"\n        }\n    ]\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/delegationSchemes",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"delegationSchemes"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"error_code\": 4030,\n \"error_description\": \"The delegation scheme is invalid: one or more of the role codes supplied are invalid\"\n}"
+								},
+								{
+									"name": "Delegeringsoppsettet er opprettet.",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"owner_org\": \"991825827\",\n    \"scopes\": [\n        \"difi:user/kontaktinfo.read\",\n        \"difi:user/varsling.read\"\n    ],\n    \"default_language\": \"nb_NO\",\n    \"title\": [\n        {\n            \"code\": \"nb_NO\",\n            \"value\": \"Full tilgang til Kontakt- og Reservasjonsregisteret\"\n        },\n        {\n            \"code\": \"nn_NO\",\n            \"value\": \"Full tilgang til Kontakt- og Reservasjonsregisteret\"\n        },\n        {\n            \"code\": \"en_GB\",\n            \"value\": \"Full access to the Contact and Reservation Register\"\n        }\n    ],\n    \"description\": [\n        {\n            \"code\": \"nb_NO\",\n            \"value\": \"Gir anledning til å lese og endre data i KRR\"\n        },\n        {\n            \"code\": \"nn_NO\",\n            \"value\": \"Gjer høve til å lesa og endra data i KRR\"\n        },\n        {\n            \"code\": \"en_GB\",\n            \"value\": \"Allows you to read and change data in the Contact and Reservation Register\"\n        }\n    ],\n    \"delegation_source\": \"altinn\",\n    \"delegation_source_config\": [\n        {\n            \"key\": \"RequiresRoles\",\n            \"value\": \"DAGL,LEDE\"\n        }\n    ]\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/delegationSchemes",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"delegationSchemes"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"<uuid>\""
+								},
+								{
+									"name": "Ingen tilgang til å opprette oppgitt delegeringsoppsett. Se respons for nærmere forklaring.",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"owner_org\": \"991825827\",\n    \"scopes\": [\n        \"difi:user/kontaktinfo.read\",\n        \"difi:user/varsling.read\"\n    ],\n    \"default_language\": \"nb_NO\",\n    \"title\": [\n        {\n            \"code\": \"nb_NO\",\n            \"value\": \"Full tilgang til Kontakt- og Reservasjonsregisteret\"\n        },\n        {\n            \"code\": \"nn_NO\",\n            \"value\": \"Full tilgang til Kontakt- og Reservasjonsregisteret\"\n        },\n        {\n            \"code\": \"en_GB\",\n            \"value\": \"Full access to the Contact and Reservation Register\"\n        }\n    ],\n    \"description\": [\n        {\n            \"code\": \"nb_NO\",\n            \"value\": \"Gir anledning til å lese og endre data i KRR\"\n        },\n        {\n            \"code\": \"nn_NO\",\n            \"value\": \"Gjer høve til å lesa og endra data i KRR\"\n        },\n        {\n            \"code\": \"en_GB\",\n            \"value\": \"Allows you to read and change data in the Contact and Reservation Register\"\n        }\n    ],\n    \"delegation_source\": \"altinn\",\n    \"delegation_source_config\": [\n        {\n            \"key\": \"RequiresRoles\",\n            \"value\": \"DAGL,LEDE\"\n        }\n    ]\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/delegationSchemes",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"delegationSchemes"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"error_code\": 4031,\n \"error_description\": \"You do not have access to create a schema with one or more of the supplied scopes\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Slett et delegeringsoppsett ",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7cc50db1-2ece-4294-a423-f2299e015269",
+										"exec": [
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+											"});",
+											"",
+											"pm.test(\"Body contains GUID\", function () {",
+											"    pm.response.to.have.body(/^\"[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}\"$/);",
+											"});",
+											"",
+											"pm.environment.set(\"DefaultDelegationSchemeId\", pm.response.json());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/delegationSchemes/:delegationSchemeId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"delegationSchemes",
+										":delegationSchemeId"
+									],
+									"variable": [
+										{
+											"key": "delegationSchemeId",
+											"value": "{{DefaultDelegationSchemeId}}"
+										}
+									]
+								},
+								"description": "Slett et delegeringsoppsett."
 							},
 							"response": [
 								{
@@ -204,7 +367,7 @@
 									"query": [
 										{
 											"key": "owner_orgno",
-											"value": "810419962",
+											"value": "974760673",
 											"disabled": true
 										}
 									]
@@ -1492,7 +1655,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/delegations?scope={{DefaultScope}}",
+							"raw": "{{baseUrl}}/delegations?scope=altinn:maskinporten/anisha.read",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1502,7 +1665,17 @@
 							"query": [
 								{
 									"key": "scope",
-									"value": "{{DefaultScope}}"
+									"value": "{{DefaultScope}}",
+									"disabled": true
+								},
+								{
+									"key": "scope",
+									"value": "altinn:ettellerannetscope.read",
+									"disabled": true
+								},
+								{
+									"key": "scope",
+									"value": "altinn:maskinporten/anisha.read"
 								}
 							]
 						}
@@ -1596,7 +1769,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/delegations?scope={{DefaultScope}}&consumer_org={{DefaultConsumerOrg}}&supplier_org={{DefaultSupplierOrg}}",
+							"raw": "{{baseUrl}}/delegations?",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1606,15 +1779,18 @@
 							"query": [
 								{
 									"key": "scope",
-									"value": "{{DefaultScope}}"
+									"value": "{{DefaultScope}}",
+									"disabled": true
 								},
 								{
-									"key": "consumer_org",
-									"value": "{{DefaultConsumerOrg}}"
+									"key": "consumerOrg",
+									"value": "{{DefaultConsumerOrg}}",
+									"disabled": true
 								},
 								{
-									"key": "supplier_org",
-									"value": "{{DefaultSupplierOrg}}"
+									"key": "supplierOrg",
+									"value": "{{DefaultSupplierOrg}}",
+									"disabled": true
 								}
 							]
 						}
@@ -1790,7 +1966,7 @@
 					"    console.log(\"Expires set? \" + (accesTokenExpires ? 'Yes, ' + accesTokenExpires : 'No'));",
 					"    console.log(\"Always refresh? \" + (alwaysRefresh ? 'Yes' : 'No'));",
 					"    ",
-					"    pm.sendRequest(\"http://devenv.altinn.no:17823/\", function (err, response) {",
+					"    pm.sendRequest(\"http://localhost:17823/\", function (err, response) {",
 					"        var json = response.json();",
 					"        if (typeof json.access_token !== \"undefined\") {",
 					"            pm.environment.set(\"accessToken\", json.access_token);",
